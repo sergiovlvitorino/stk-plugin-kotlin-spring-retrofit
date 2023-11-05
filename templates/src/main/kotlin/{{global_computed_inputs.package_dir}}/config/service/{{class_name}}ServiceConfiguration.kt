@@ -1,6 +1,6 @@
 package {{ global_computed_inputs.base_package }}.messaging.producer
 
-import org.springframework.stereotype.Configuration
+import org.springframework.context.annotation.Configuration
 
 @Configuration
 class {{ class_name }}ServiceConfiguration {
