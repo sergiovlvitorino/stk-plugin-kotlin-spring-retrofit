@@ -1,0 +1,42 @@
+schema-version: v2
+kind: plugin
+metadata:
+  name: plugin-kotlin-spring-retrofit
+  display-name: plugin-kotlin-spring-retrofit
+  description: plugin para utilizacao do framework retrofit dentro de aplicações kotlin, spring e maven.
+  version: 0.0.1
+  picture: plugin.png
+spec:
+  type: app
+  compatibility:
+    - kotlin
+    - spring
+    - maven
+  about: docs/about.md
+  implementation: docs/implementation.md
+  release-notes: docs/release-notes-0.0.1.md
+  requirements: docs/requirements.md
+  single-use: False
+  technologies: # Ref: https://docs.stackspot.com/create-use/create-content/yaml-files/plugin-yaml/#technologies-1
+    - Api
+  stk-projects-only: false
+  inputs:
+    - label: Class name
+      type: text
+      name: class_name
+      global: false
+    - label: Base URL
+      type: text
+      name: base_url
+      global: false
+  hooks:
+    - type: edit
+      path: pom.xml
+      trigger: after-render
+      changes:
+        - search:
+            string: "</dependencies>"
+            insert-before:
+              snippet: snippets/snippet-pom.xml
+            when:
+              not-exists-snippet: snippets/snippet-pom.xml
